@@ -10,7 +10,7 @@ module vga_clock (
     output wire [5:0] rrggbb
     );
 
-    wire reset = !reset_n;
+    wire reset = reset_n;
 
     reg [3:0] sec_u;
     reg [2:0] sec_d;

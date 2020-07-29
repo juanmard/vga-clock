@@ -1,0 +1,18 @@
+# 16 MHz clock for TinyFPGA-BX
+set_io -nowarn clk           B2    # PIN CLK
+
+# LEDs and Button
+set_io -nowarn reset_n       B7    # PIN_21
+set_io -nowarn adj_sec       A7    # PIN_22
+set_io -nowarn adj_min       B6    # PIN_23
+set_io -nowarn adj_hrs       A6    # PIN_24
+
+# VGA signals.
+set_io -nowarn vsync         H2    # PIN_13
+set_io -nowarn hsync         J1    # PIN_12
+set_io -nowarn rrggbb[5]     H1    # PIN_11 (Red)
+set_io -nowarn rrggbb[4]     A2    # PIN_1  (NC)
+set_io -nowarn rrggbb[3]     G2    # PIN_10 (Green)
+set_io -nowarn rrggbb[2]     A1    # PIN_2  (NC)
+set_io -nowarn rrggbb[1]     E1    # PIN_9  (Blue)
+set_io -nowarn rrggbb[0]     B1    # PIN_3  (NC)

@@ -4,13 +4,11 @@
 SHELL := /bin/bash # Use bash syntax
 SEED = 10
 PROJECT = vga_clock
-PI_ADDR = pi@fpga.local
-FOMU_FLASH = ~/fomu-flash/fomu-flash
-LOG_LUTS = ~/work/fpga/logLUTs/logLUTs.py 
+LOG_LUTS = ../../logLUTs/logLUTs.py 
 
-DEVICE = up5k
-PIN_DEF = icebreaker.pcf
-PACKAGE = sg48
+DEVICE = lp8k
+PIN_DEF = tinyfpgabx.pcf
+PACKAGE = cm81
 
 # target freq for vga panel
 FREQ = 31.5
@@ -58,7 +56,7 @@ $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.asc
 #	ssh $(PI_ADDR) "sudo $(FOMU_FLASH) -w /tmp/$(PROJECT).bin; sudo $(FOMU_FLASH) -r"
 
 prog: $(PROJECT).bin
-	iceprog $<
+	tinyprog -p $<
 
 debug:
 	iverilog -o test.out  $(SOURCES) top_tb.v -DDEBUG

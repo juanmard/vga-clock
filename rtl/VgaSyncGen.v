@@ -30,36 +30,35 @@ module VgaSyncGen (
          );
 
     // Generated values for pixel clock of 31.5Mhz and 72Hz frame frecuency.
-    // # icepll -i12 -o31.5
+    // # icepll -i16 -o31.5
     //
-    // F_PLLIN:    12.000 MHz (given)
+    // F_PLLIN:    16.000 MHz (given)
     // F_PLLOUT:   31.500 MHz (requested)
     // F_PLLOUT:   31.500 MHz (achieved)
     //
     // FEEDBACK: SIMPLE
-    // F_PFD:   12.000 MHz
+    // F_PFD:   16.000 MHz
     // F_VCO: 1008.000 MHz
     //
     // DIVR:  0 (4'b0000)
-    // DIVF: 83 (7'b1010011)
+    // DIVF: 62 (7'b0111110)
     // DIVQ:  5 (3'b101)
     //
     // FILTER_RANGE: 1 (3'b001)
     //
-    `ifdef SYNTH
-    SB_PLL40_PAD #(
+    `ifdef SYNTH 
+    SB_PLL40_CORE #(
             .FEEDBACK_PATH("SIMPLE"),
             .DIVR(4'b0000),
-            .DIVF(7'b1010011),
+            .DIVF(7'd62),
             .DIVQ(3'b101),
             .FILTER_RANGE(3'b001)
         ) uut (
             .RESETB(1'b1),
             .BYPASS(1'b0),
-            .PACKAGEPIN(clk),
+            .REFERENCECLK(clk),
             .PLLOUTCORE(px_clk)
-            );
-
+        );
     `else
         assign px_clk = clk;
     `endif
